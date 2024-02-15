@@ -65,7 +65,8 @@ it will automatically authenticate into AD using the shared `ccache`.
 ### The .keytab File
 To produce this file you need to have Kerberos installed on your system.  
 I use Red Hat, but the Debian/Ubuntu version of these commands are also used  
-when we are setting up Mage.ai to use the tickets we generate here.
+when we are setting up Mage.ai to use the tickets we generate here.  
+I will be using an example account name here: "svc-mage".  
 
 1. Install Kerberos on your host system.  
   `dnf install -y krb5-workstation` 
@@ -232,7 +233,11 @@ FROM mageai/mageai:latest
   The tickets are available on the `mage` container for AD authentication but  
   the `mage` container cannot make any changes to them. The `/krb5/` dir is also  
   specified in the `krb5.conf` as the location where it should look for valid  
-  credentials.
+  credentials. The container will be listening on the default HTTP port (80) and
+  will forward incoming traffic to the default Mage.ai port (6789). When building
+  image the `args` will be passed to the Dockerfile as defined in Step 1. The
+  container is also set to be dependent on kerb, therefore kerb will be started  
+  first and the `ccache` will be available to the mage container immediately.
   
 ```
 services:
