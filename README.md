@@ -233,11 +233,11 @@ FROM mageai/mageai:latest
   The tickets are available on the `mage` container for AD authentication but  
   the `mage` container cannot make any changes to them. The `/krb5/` dir is also  
   specified in the `krb5.conf` as the location where it should look for valid  
-  credentials. The container will be listening on the default HTTP port (80) and
-  will forward incoming traffic to the default Mage.ai port (6789). When building
-  image the `args` will be passed to the Dockerfile as defined in Step 1. The
+  credentials. The container will be listening on the default HTTP port (80) and  
+  will forward incoming traffic to the default Mage.ai port (6789). When building  
+  image the `args` will be passed to the Dockerfile as defined in Step 1. The  
   container is also set to be dependent on kerb, therefore kerb will be started  
-  first and the `ccache` will be available to the mage container immediately.
+  first and the `ccache` will be available to the mage container immediately.  
   
 ```
 services:
